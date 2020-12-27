@@ -88,6 +88,9 @@ ENV DOCKER_TLS_CERTDIR=/certs
 # also, ensure the directory pre-exists and has wide enough permissions for "dockerd-entrypoint.sh" to create subdirectories, even when run in "rootless" mode
 RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
 
+RUN usermod -aG docker jenkins
+RUN usermod -aG root jenkins
+
 ### add docker end. ####
 
 ADD kubectlv1.20.1 /usr/bin/kubectl
